@@ -22,5 +22,5 @@ public:
 
 private:
     string m_input_text;
-    std::promise<string> m_future_string_holder;
+    std::promise<string> m_promise_response;
 };

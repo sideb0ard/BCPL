@@ -7,7 +7,6 @@
 #include "message.hpp"
 
 using namespace std;
-using spromise = promise<string>;
 
 class Bot
 {
@@ -21,8 +20,10 @@ private:
 
 private:
     std::deque<unique_ptr<Message>> m_converse_queue;
-    std::thread m_thread;
+    bool m_active;
 
     condition_variable m_queue_condition;
     mutex m_queue_mutex;
+
+    std::thread m_thread;
 };

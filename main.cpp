@@ -10,11 +10,17 @@ int main()
 
     string input_line;
 
-    while(true)
+    cout << "> ";
+    while(getline(cin, input_line))
     {
-        getline(cin, input_line);
-        future<string> fut = bot.converse(input_line);
-        string reply = fut.get();
-        cout << reply << endl;
+        if (input_line.size() != 0)
+        {
+            future<string> fut = bot.converse(input_line);
+            string reply = fut.get();
+            cout << reply << endl;
+        }
+
+        cout << "> ";
     }
+    cout << "byeeee" << endl;
 }

@@ -15,13 +15,13 @@ Message::~Message()
 
 Message::Message(Message& a) :
     m_input_text{a.m_input_text},
-    m_future_string_holder{move(a.m_future_string_holder)}
+    m_promise_response{move(a.m_promise_response)}
 {
     cout << "COPY contructed!\n";
 }
 Message::Message(Message&& a) :
     m_input_text{a.m_input_text},
-    m_future_string_holder{move(a.m_future_string_holder)}
+    m_promise_response{move(a.m_promise_response)}
 {
     cout << "Move contructed!\n";
 }
@@ -29,10 +29,10 @@ Message::Message(Message&& a) :
 
 future<string> Message::GetFutureReply()
 {
-    return m_future_string_holder.get_future();
+    return m_promise_response.get_future();
 }
 
 void Message::SetResponse(std::string response)
 {
-    m_future_string_holder.set_value(response);
+    m_promise_response.set_value(response);
 }
